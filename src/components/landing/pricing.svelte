@@ -60,7 +60,7 @@
     .main .grid{
         padding: 50px 0;
         display: grid;
-        grid-template-columns: repeat(auto-fit,280px) ;
+        grid-template-columns: repeat(auto-fit,280px);
         justify-content: center;
         
     }

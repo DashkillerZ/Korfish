@@ -1,125 +1,109 @@
-<script>
-    
-    function menuopen(){
-        document.getElementById("nav").classList.toggle("navopen");
+<script>  
+    import {createEventDispatcher} from 'svelte';
+    let dispach = createEventDispatcher();
+
+    function handleClick(i){
+        dispach('handle', i);
+        // console.log(i);
     }
-    window.addEventListener("resize", function(event) {
-        if(document.body.clientWidth>830){
-            document.getElementById("nav").classList.add("navopen");
-        }
-    });
-    
+
 </script>
 <div class="main ">
-    <div class="exclass">
-        <div class="left ">
-            <img src="./assets/img/logo.png" alt="" height="70px"/>
-        </div>
-        <div class="right ma">
-            <div class="large">
-                <a href="#" class="active">home</a>
-                <a href="#">Protection&nbsp;and&nbsp;Features</a>
-                <a href="#">Pricing</a>
-                <a href="#">About</a>
-                <a href="#">Blog</a>
-                <a href="#">Contact&nbsp;Us</a>
-
+    <div class="left" on:click={()=>{handleClick(0)}}>
+        <img src="./assets/img/logo.svg" alt="" height="55px"/>
+    </div>
+    <details>
+        <summary>
+            <span>Explore Features</span>
+            <div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-            <div id="navbtn" on:click="{menuopen}"><i class="fas fa-bars"></i></div>
+        </summary>
+        <div class="menu">
+            <a href="#" on:click={()=>{handleClick(1)}}>Bad Bots</a>
+            <a href="#" on:click={()=>{handleClick(2)}}>Bad Words</a>
+            <a href="#" on:click={()=>{handleClick(3)}}>Proxy Protection</a>
+            <a href="#" on:click={()=>{handleClick(4)}}>Spam Protection</a>
+            <a href="#" on:click={()=>{handleClick(5)}}>SQLi Protection</a>
         </div>
-    </div>
-    <div class="small navopen" id="nav">
-        <a href="#">Home</a>
-        <a href="#">Protection&nbsp;and&nbsp;Features</a>
-        <a href="#">Pricing</a>
-        <a href="#">About</a>
-        <a href="#">Blog</a>
-        <a href="#">Contact&nbsp;Us</a>
-    </div>
+    </details>
 </div>
 <style>
-    .small,#navbtn{
-        display: none;
-    }
-    .ma{
-        margin-left: auto;
-        margin-right: auto; 
+    .main{
+        height: 80px;
+        display: flex;
+        background: #333;
+        justify-content: space-between;
     }
     .left{
-        margin: 0 0 0 5vw;
+        display: flex;
+        align-items: center;
+        padding-left: 6vw;
     }
-    .main{
-        overflow: hidden;
-        height: 74px;
-    }
-    .exclass{
+    .menu{
         display: grid;
-        z-index: 100;
-        grid-template-columns: 1fr 2fr;
-        background: #333;
+        position: absolute;
+        background:#333;
+        width: 180px;
     }
-    .right .large a{
-        align-content: center;
-        transition: all 0.2s;
-        padding:0 5px;
-        height: 30px;
-        margin: 15px 0;
-        padding: 10px;
-        display: inline-grid;
+    .menu a{
+        padding: 13px 0 0px 20px;
         text-decoration: none;
-        color: #bbb;
+        color: white;
+        font-size: 1.2rem;
+        transition: all 200ms;
+        height: 40px;
+        align-items: center;
     }
-    .right .large a:hover{
-        background: rgb(71, 71, 71);
+    .menu a:hover{
+        text-decoration: none;
+        color: red;
+        font-size: 1.2rem;
+        background: #444;
     }
-    .active{
-        color: red !important;
-    }
-    @media (max-width:830px){
-        .small,#navbtn{
-            display: grid;
-            color: white;
-        }
-        .right{
-            margin: 0;
-        }
-        #navbtn{
-            padding: 20px;
-            width: 16px;
-            margin: 10px 0 8px auto;
-            border-radius: 50%;
-        }
-        #navbtn:hover{
-            background: #424242;
+    details{
+        display: flex;
+        align-items: center;
 
+    }
+    summary{
+        align-self: center;
+        color: white;
+        font-size: 1.3rem;
+        list-style: "";
+        height: 50px;
+        margin: 27px 6vw 0 0;
+        padding:  0 10px ;
+        border-bottom: 3px solid red;
+        cursor: pointer;
+        user-select: none;
+    }
+    summary div{
+        display: none;
+        width: 30px;
+    }
+    summary>div div{
+        width: 28px;
+        height: 3px;
+        border-radius: 2px;
+        margin: 6px auto;
+        background: white;
+
+    }
+    @media (max-width:580px){
+        .menu{
+            width: 100vw;
+            position: absolute;
+            left: 0;
         }
-        .large{
+        summary span{
             display: none;
         }
-        .small{
-            background: #333;
-            position: absolute;
-            height: 240px;
-            overflow: hidden;
-            transition: all 0.5s;
-            /* margin-top: 80px; */
-        }
-        .small>a{
-            text-decoration: none;
-            transition: all 0.5s;
+        summary div{
             display: block;
-            padding: 5px 0 5px 5vw ;
-            color: #bbb;
-            width: 95vw;
-            height: 30px;
-            align-content: center;
-        }
-        .small a:hover{
-            background: #424242;
-            letter-spacing: 1px;
-        }
-        .navopen{
-            height: 0px;
         }
     }
+  
 </style>
