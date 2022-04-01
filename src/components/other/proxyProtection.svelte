@@ -4,13 +4,13 @@
     import {onMount} from 'svelte';
     let header = [];
     onMount(async()=>{
-        const response = await fetch('http://localhost:8000/proxyprotection');
+        const response = await fetch('https://dashkiller.pythonanywhere.com/proxyprotection');
         header = await response.json();
     })  
 
     let posts = [];
     onMount(async()=>{
-        const response = await fetch('http://localhost:8000/proxyprotectionlist');
+        const response = await fetch('https://dashkiller.pythonanywhere.com/proxyprotectionlist');
         posts = await response.json();
     })  
 

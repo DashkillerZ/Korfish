@@ -4,13 +4,13 @@
     import {onMount} from 'svelte';
     let header = [];
     onMount(async()=>{
-        const response = await fetch('http://localhost:8000/spamprotection');
+        const response = await fetch('https://dashkiller.pythonanywhere.com/spamprotection');
         header = await response.json();
     })  
 
     let posts = [];
     onMount(async()=>{
-        const response = await fetch('http://localhost:8000/spamprotectionlist');
+        const response = await fetch('https://dashkiller.pythonanywhere.com/spamprotectionlist');
         posts = await response.json();
     })  
 
